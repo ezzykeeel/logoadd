@@ -1,7 +1,6 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
-import UserModal from "../models/user.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import UserModal from "../models/user";
 
 const secret = "test";
 
@@ -21,6 +20,11 @@ export const signup = async (req, res) => {
       password: hashedPassowrd,
       name: `${firstName} ${lastName}`,
     });
+
+    const token = jwt.sign({ email: result.email, id: result._id }, secret, {
+      expiresIn: "1h",
+    });
+    res.status(201).json({result, token});
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
     console.log(error);
