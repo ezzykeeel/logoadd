@@ -11,7 +11,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extened: true }));
 app.use(cors());
 
-app.use("/user", userRouter); // http://localhost:5000/user/signup
+app.use("/users", userRouter); // http://localhost:5000/user/signup
 
 const MONGODB_URL =
   // "mongodb+srv://zeke223:zekepass1@cluster0.fj9uhmv.mongodb.net/?retryWrites=true&w=majority";
